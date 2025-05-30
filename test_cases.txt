@@ -1,11 +1,69 @@
+1. Declarar variables
 
-# Casos válidos
-define x as 10;
-let x equal 20;
-show "Hola mundo";
-terminate;
+digamos nombre es "Luis"!
+digamos edad es 20!
+digamos activo es verdadero!
 
-# Casos inválidos
-define x 10;
-let equal 5;
-show Hola;
+
+🟢 2. Asignar nuevos valores
+ponele edad en 25!
+ponele nombre en "Ana"!
+
+
+🟢 3. Mostrar valores en consola
+chapin
+Copiar
+Editar
+deci "¡Hola, mundo!"!
+deci nombre!
+deci "Edad: " + edad!
+🟢 4. Operaciones aritméticas
+chapin
+Copiar
+Editar
+digamos suma es suma(10 + 5)!
+digamos diferencia es resta(20 - 8)!
+digamos producto es multiplica(3 * 4)!
+digamos division es parti(10 / 2)!
+🟢 5. Bloques de código (funciones)
+chapin
+Copiar
+Editar
+echate saludar con persona {
+    deci "Hola " + persona + "!"!
+    fin!
+}
+🟢 6. Condicionales (estructura válida)
+chapin
+Copiar
+Editar
+en caso de que edad > 18 haz {
+    deci "Ya sos mayor de edad!"!
+}
+de lo contrario haz {
+    deci "Todavía no alcanzás los 18!"!
+}
+Esto compila pero aún no se interpreta hasta que lo programemos en el interpreter.py.
+
+🟢 7. Ciclos
+chapin
+Copiar
+Editar
+dale vueltas mientras que x < 5 haz {
+    deci "Iteración!"!
+    ponele x en suma(x + 1)!
+} soque hasta que x == 5!
+Igual que arriba: compila, pero aún no ejecuta correctamente hasta que lo extendamos en el intérprete.
+
+🟢 8. Entrada de usuario
+chapin
+Copiar
+Editar
+pedile nombre!
+Compila, pero falta implementar lectura en consola.
+
+🟣 Fin del programa
+chapin
+Copiar
+Editar
+ya estuvo!
