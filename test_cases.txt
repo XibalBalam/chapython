@@ -1,0 +1,11 @@
+
+# Casos válidos
+define x as 10;
+let x equal 20;
+show "Hola mundo";
+terminate;
+
+# Casos inválidos
+define x 10;
+let equal 5;
+show Hola;
