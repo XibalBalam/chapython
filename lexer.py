@@ -6,19 +6,19 @@ class Lexer:
 
     def tokenize(self):
         token_specification = [
-            # Palabras clave (primero, para que no se confundan con ID)
+            # Palabras clave
             ('DIGAMOS',       r'\bdigamos\b'),
             ('ES',            r'\bes\b'),
             ('PONELE',        r'\bponele\b'),
             ('EN',            r'\ben\b'),
             ('DECI',          r'\bdeci\b'),
-            ('YA_ESTUVO',     r'\bya\s*estuvo\b'),
-            ('DALE_VUELTAS',  r'\bdale\s*vueltas\b'),
-            ('MIENTRAS_QUE',  r'\bmientras\s*que\b'),
-            ('SOQUE_HASTA_QUE', r'\bsoque\s*hasta\s*que\b'),
-            ('EN_CASO_DE_QUE', r'\ben\s*caso\s*de\s*que\b'),
+            ('YA_ESTUVO',     r'\bya\s+estuvo\b'),
+            ('DALE_VUELTAS',  r'\bdale\s+vueltas\b'),
+            ('MIENTRAS_QUE',  r'\bmientras\s+que\b'),
+            ('SOQUE_HASTA_QUE', r'\bsoque\s+hasta\s+que\b'),
+            ('EN_CASO_DE_QUE', r'\ben\s+caso\s+de\s+que\b'),
             ('HAZ',           r'\bhaz\b'),
-            ('DE_LO_CONTRARIO', r'\bde\s*lo\s*contrario\b'),
+            ('DE_LO_CONTRARIO', r'\bde\s+lo\s+contrario\b'),
             ('ECHATE',        r'\bechate\b'),
             ('CON',           r'\bcon\b'),
             ('FIN',           r'\bfin\b'),
@@ -32,24 +32,31 @@ class Lexer:
             ('MULTIPLICA',    r'\bmultiplica\b'),
             ('PARTI',         r'\bparti\b'),
 
+            # Literales especiales
+            ('VERDADERO',     r'\bverdadero\b'),
+            ('FALSO',         r'\bfalso\b'),
+            ('NULO',          r'\bnull\b'),
+
             # Operadores y símbolos
             ('EXCLAMATION',   r'!'),
             ('PAREN_IZQ',     r'\('),
             ('PAREN_DER',     r'\)'),
-            ('OPERADOR_ARIT', r'[\+\-\*/]'),
-            ('OPERADOR',      r'[><=]+'),
-            ('COMA',          r','),
             ('LLAVES_IZQ',    r'\{'),
             ('LLAVES_DER',    r'\}'),
+            ('OPERADOR_ARIT', r'[+\-*/]'),
+            ('OPERADOR',      r'(==|!=|>=|<=|>|<)'),
+            ('COMA',          r','),
 
-            # Identificadores y literales
-            ('STRING',        r'\"[^\"]*\"'),
+            # Literales
+            ('STRING',        r'"(?:\\.|[^"\\])*"'),
             ('NUMBER',        r'\d+'),
-            ('ID',            r'[a-zA-Z_][a-zA-Z0-9_]*'),
+
+            # Identificadores (al final para no confundir con keywords)
+            ('ID',            r'\b[a-zA-Z_][a-zA-Z0-9_]*\b'),
 
             # Espacios y errores
-            ('SKIP',          r'[ \t\n]+'),
-            ('MISMATCH',      r'.')
+            ('SKIP',          r'[ \t\r\n]+'),
+            ('MISMATCH',      r'.'),
         ]
 
         regex = '|'.join(f'(?P<{name}>{pattern})' for name, pattern in token_specification)
@@ -60,6 +67,6 @@ class Lexer:
             if kind == 'SKIP':
                 continue
             elif kind == 'MISMATCH':
-                raise RuntimeError(f'Illegal character: {value}')
+                raise RuntimeError(f"👀 Mira vos, ese caracter no lo entiendo: '{value}'")
             tokens.append((kind, value))
         return tokens

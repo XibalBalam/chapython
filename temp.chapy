@@ -1,0 +1,12 @@
+digamos nombre es "Luis"!
+digamos veces es 3!
+digamos contador es 0!
+
+dale vueltas mientras que contador < veces haz {
+    deci "¡Hola, "!
+    deci nombre!
+    deci "!"!
+    ponele contador en suma(contador + 1)!
+} soque hasta que contador == veces!
+
+ya estuvo!
